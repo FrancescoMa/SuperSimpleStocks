@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import main.Operations;
-import main.SuperSimpleStocks;
+import mainStocks.Operations;
+import mainStocks.SuperSimpleStocks;
 
 /**
  * @author FrancescoM
@@ -19,7 +19,7 @@ public class testOperation {
 
 	final static Logger logger = Logger.getLogger(testOperation.class);
 	/**
-	 * Test method for {@link main.Operations#dividendYield(int, int)}.
+	 * Test method for {@link mainStocks.Operations#dividendYield(int, int)}.
 	 */
 	@Test
 	public void testDividendYieldIntInt() {
@@ -29,7 +29,7 @@ public class testOperation {
 	}
 
 	/**
-	 * Test method for {@link main.Operations#dividendYield(int, int, int)}.
+	 * Test method for {@link mainStocks.Operations#dividendYield(int, int, int)}.
 	 */
 	@Test
 	public void testDividendYieldIntIntInt() {
