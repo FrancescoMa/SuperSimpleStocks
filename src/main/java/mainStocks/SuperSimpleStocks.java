@@ -31,6 +31,8 @@ public class SuperSimpleStocks {
 		Stock ale = new Stock("ALE",23,60);
 		Stock gin = new Stock("GIN",8,2,100);
 		Stock joe = new Stock("TEA",0,100);
+		
+		logger.info("tea ="+tea.getSymbol());
 
 	}
 
