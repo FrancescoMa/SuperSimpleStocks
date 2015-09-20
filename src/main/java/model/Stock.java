@@ -15,9 +15,14 @@ public class Stock {
 	final static Logger logger = Logger.getLogger(Stock.class);
 	private String symbol="";
 	private boolean preferred=false;
-	private int lastDividend=0;
-	private int fixedDividend;
-	private int parValue=0;
+	private double lastDividend=0.0;
+	private double fixedDividend;
+	private double parValue=0.0;
+	
+	/*
+	 * progressive. it is reasonable to assume that: 
+	 * if is register a sales growth in the previous 15 min, the price increases of deltax/15
+	 */
 	private double tickerPrice = 0.0;
 	
 	
@@ -42,8 +47,6 @@ public class Stock {
 		this.preferred=true;
 	}
 
-	
-	
 	/**
 	 * @return the symbol
 	 */
@@ -75,42 +78,42 @@ public class Stock {
 	/**
 	 * @return the lastDividend
 	 */
-	public int getLastDividend() {
+	public double getLastDividend() {
 		return lastDividend;
 	}
 
 	/**
 	 * @param lastDividend the lastDividend to set
 	 */
-	public void setLastDividend(int lastDividend) {
+	public void setLastDividend(double lastDividend) {
 		this.lastDividend = lastDividend;
 	}
 
 	/**
 	 * @return the fixedDividend
 	 */
-	public int getFixedDividend() {
+	public double getFixedDividend() {
 		return fixedDividend;
 	}
 
 	/**
 	 * @param fixedDividend the fixedDividend to set
 	 */
-	public void setFixedDividend(int fixedDividend) {
+	public void setFixedDividend(double fixedDividend) {
 		this.fixedDividend = fixedDividend;
 	}
 
 	/**
 	 * @return the parValue
 	 */
-	public int getParValue() {
+	public double getParValue() {
 		return parValue;
 	}
 
 	/**
 	 * @param parValue the parValue to set
 	 */
-	public void setParValue(int parValue) {
+	public void setParValue(double parValue) {
 		this.parValue = parValue;
 	}
 
@@ -127,6 +130,9 @@ public class Stock {
 	public void setTickerPrice(double tickerPrice) {
 		this.tickerPrice = tickerPrice;
 	}
+
+	
+	
 	
 	
 	

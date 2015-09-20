@@ -3,7 +3,11 @@
  */
 package mainStocks;
 
+import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
+
+import model.Stock;
 
 /**
  * @author FrancescoM
@@ -22,24 +26,36 @@ public class Operations {
 	/*
 	 * this method return the Dividend Yeld for Common Stocks
 	 */
-	public int dividendYield(int lastDividend, int tickerPrice){
+	public double dividendYield(double lastDividend, double tickerPrice){
 		
-		return 0;
+		double dividendYield = -1.0;
+		dividendYield = lastDividend / tickerPrice;
+		
+		return dividendYield;
 	}
 	
 	/*
 	 * this method return the Dividend Yeld for Preferred Stocks
 	 */
-	public int dividendYield(int fixedDividend, int parValue, int tickerPrice){
+	public double dividendYield(double fixedDividend, double parValue, double tickerPrice){
 		
-		return 0;
+		double dividendYield = -1.0;
+		dividendYield = (fixedDividend * parValue ) / tickerPrice;
+		
+		return dividendYield;
 	}
 	
 	/*
 	 * this method return the P/E Ratio
 	 */
-	public int peRatio(int tickerPrice, int dividend){
-		return 0;
+	public double peRatio(int tickerPrice, int lastDividend){
+		double peRatio = -1.0;
+		
+		if(tickerPrice > 0.0){
+			peRatio = tickerPrice / dividendYield(lastDividend, tickerPrice);	
+		}
+		
+		return peRatio;
 	}
 	
 	//----------------trade---------------
@@ -47,7 +63,7 @@ public class Operations {
 	/*
 	 * this method return the Stock Price based on trades recorded in past 15 minutes
 	 */
-	public int stockPriceTradesRecorded(/*insert*/){
+	public double stockPriceTradesRecorded(/*insert*/){
 		return 0;
 	}
 	
@@ -57,8 +73,20 @@ public class Operations {
 	 * This method return the GBCE All Share Index 
 	 * using the geometric mean of prices for all stocks
 	 */
-	public int indexGBCEShare(/*insert*/){
-		return 0;
+	public double indexGBCEShare(ArrayList<Stock> stocks) throws Exception{
+		double allShareIndex = 0.0;
+		
+		// Calculate stock price for all stock in the system
+		if(stocks.size()>=1){
+			double arg=0.0;
+			for(int i=0; i<stocks.size(); i++){
+				Stock stock = stocks.get(i);
+				arg = arg + stock.getTickerPrice() ;
+			}
+			// Calculates the GBCE All Share Index
+			allShareIndex = Math.pow(8, ((double)1/stocks.size()));
+		}
+		return allShareIndex;
 	}
 	
 	
