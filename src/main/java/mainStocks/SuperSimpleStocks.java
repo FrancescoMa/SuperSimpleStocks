@@ -25,15 +25,28 @@ public class SuperSimpleStocks {
 	public static void main(String[] args) {
 		
 		Operations operations= new Operations();
-		ArrayList<Stock> listSotocks = new ArrayList<Stock>();
+		ArrayList<Stock> listStocks = new ArrayList<Stock>();
 		Stock tea = new Stock("TEA",0,100);
 		Stock pop = new Stock("POP",8,100);
 		Stock ale = new Stock("ALE",23,60);
 		Stock gin = new Stock("GIN",8,2,100);
 		Stock joe = new Stock("TEA",0,100);
+		listStocks.add(tea);
+		listStocks.add(pop);
+		listStocks.add(ale);
+		listStocks.add(gin);
+		listStocks.add(joe);
 		
-		logger.info("tea ="+tea.getSymbol());
+		
+		
+		logger.info("listStocks ="+listStocks.size());
 
 	}
-
+	
+	
+	public static void tradeInsert(){
+		
+	}
+	
+	
 }
