@@ -1,0 +1,134 @@
+/**
+ * 
+ */
+package model;
+
+import org.apache.log4j.Logger;
+
+
+/**
+ * @author FrancescoM
+ *
+ */
+public class Stock {
+
+	final static Logger logger = Logger.getLogger(Stock.class);
+	private String symbol="";
+	private boolean preferred=false;
+	private int lastDividend=0;
+	private int fixedDividend;
+	private int parValue=0;
+	private double tickerPrice = 0.0;
+	
+	
+	/*
+	 * this constructor is for common Stocks. So, it hasn't the Fixed Dividend value
+	 */
+	public Stock(String symbol, int lastDividend, int parValue){
+		this.symbol=symbol;
+		this.lastDividend=lastDividend;
+		this.parValue=parValue;
+	}
+	
+	/*
+	 * this constructor is for preferred Stocks
+	 */
+	public Stock(String symbol, int lastDividend, int fixedDividend, int parValue){
+		this.symbol=symbol;
+		this.lastDividend=lastDividend;
+		this.parValue=parValue;
+		
+		this.fixedDividend=fixedDividend;
+		this.preferred=true;
+	}
+
+	
+	
+	/**
+	 * @return the symbol
+	 */
+	public String getSymbol() {
+		return symbol;
+	}
+
+	/**
+	 * @param symbol the symbol to set
+	 */
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
+
+	/**
+	 * @return the preferred
+	 */
+	public boolean isPreferred() {
+		return preferred;
+	}
+
+	/**
+	 * @param preferred the preferred to set
+	 */
+	public void setPreferred(boolean preferred) {
+		this.preferred = preferred;
+	}
+
+	/**
+	 * @return the lastDividend
+	 */
+	public int getLastDividend() {
+		return lastDividend;
+	}
+
+	/**
+	 * @param lastDividend the lastDividend to set
+	 */
+	public void setLastDividend(int lastDividend) {
+		this.lastDividend = lastDividend;
+	}
+
+	/**
+	 * @return the fixedDividend
+	 */
+	public int getFixedDividend() {
+		return fixedDividend;
+	}
+
+	/**
+	 * @param fixedDividend the fixedDividend to set
+	 */
+	public void setFixedDividend(int fixedDividend) {
+		this.fixedDividend = fixedDividend;
+	}
+
+	/**
+	 * @return the parValue
+	 */
+	public int getParValue() {
+		return parValue;
+	}
+
+	/**
+	 * @param parValue the parValue to set
+	 */
+	public void setParValue(int parValue) {
+		this.parValue = parValue;
+	}
+
+	/**
+	 * @return the tickerPrice
+	 */
+	public double getTickerPrice() {
+		return tickerPrice;
+	}
+
+	/**
+	 * @param tickerPrice the tickerPrice to set
+	 */
+	public void setTickerPrice(double tickerPrice) {
+		this.tickerPrice = tickerPrice;
+	}
+	
+	
+	
+	
+}
