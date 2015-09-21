@@ -18,12 +18,12 @@ public class Stock {
 	private double lastDividend=0.0;
 	private double fixedDividend;
 	private double parValue=0.0;
-	
 	/*
 	 * progressive. it is reasonable to assume that: 
-	 * if is register a sales growth in the previous 15 min, the price increases of deltax/15
+	 * if is register a sales growth in the previous 15 min, 
+	 * the price increases of (deltax/15)%
 	 */
-	private double tickerPrice = 0.0;
+	private double tickerPrice = 1.0;
 	
 	
 	/*

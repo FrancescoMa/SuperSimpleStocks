@@ -40,7 +40,10 @@ public class Operations {
 	public double dividendYield(double fixedDividend, double parValue, double tickerPrice){
 		
 		double dividendYield = -1.0;
-		dividendYield = (fixedDividend * parValue ) / tickerPrice;
+		
+		if(tickerPrice>0.0){
+			dividendYield = (fixedDividend * parValue ) / tickerPrice;
+		}
 		
 		return dividendYield;
 	}

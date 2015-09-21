@@ -5,11 +5,15 @@ package testMain;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import mainStocks.Operations;
-import mainStocks.SuperSimpleStocks;
+import model.InizializeIstance;
+import model.Stock;
+import model.Trade;
 
 /**
  * @author FrancescoM
@@ -24,7 +28,14 @@ public class testOperation {
 	@Test
 	public void testDividendYieldIntInt() {
 		Operations op = Operations.getIstance();
-		assertEquals(7, op.dividendYield(3, 4));
+		InizializeIstance istanceStocks = new InizializeIstance();
+		ArrayList<Stock> listStocks = istanceStocks.createStocks();
+		assertNotNull(listStocks);
+		
+		ArrayList<Trade> listTrade = istanceStocks.createTrade();
+		assertTrue(listTrade.size()==0);
+		
+		
 		logger.info("test common dividend OK");
 	}
 

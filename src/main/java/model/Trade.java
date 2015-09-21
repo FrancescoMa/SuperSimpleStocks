@@ -8,34 +8,42 @@ import java.util.Date;
  */
 public class Trade {
 	
-	private Date timeStamp = null;
+	private long timeStamp = 0;
 	private Stock stock = null;
 	private boolean sell = false;
 	private int sharesQuantity = 0;
-	private double price = 0.0;//
+	private double price = 0.0;//this is the ticker price at the moment of sell/buy
 	
 	
 	/**
 	 * 
 	 */
-	public Trade(){
+	public Trade(Stock stock, long timeStamp, boolean sell, int shareQuantity, double price){
+		this.timeStamp=timeStamp;
+		this.stock=stock;
+		this.sell=sell;
+		this.sharesQuantity=shareQuantity;
+		this.price=price;
 	}
-
-
+	
+	
+	
 	/**
 	 * @return the timeStamp
 	 */
-	public Date getTimeStamp() {
+	public long getTimeStamp() {
 		return timeStamp;
 	}
+
 
 
 	/**
 	 * @param timeStamp the timeStamp to set
 	 */
-	public void setTimeStamp(Date timeStamp) {
+	public void setTimeStamp(long timeStamp) {
 		this.timeStamp = timeStamp;
 	}
+
 
 
 	/**
@@ -83,5 +91,21 @@ public class Trade {
 	 */
 	public void setSharesQuantity(int sharesQuantity) {
 		this.sharesQuantity = sharesQuantity;
+	}
+
+
+	/**
+	 * @return the price
+	 */
+	public double getPrice() {
+		return price;
+	}
+
+
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(double price) {
+		this.price = price;
 	}
 }
