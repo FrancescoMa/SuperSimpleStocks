@@ -4,10 +4,12 @@
 package mainStocks;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
 import model.Stock;
+import model.Trade;
 
 /**
  * @author FrancescoM
@@ -64,10 +66,40 @@ public class Operations {
 	//----------------trade---------------
 	
 	/*
-	 * this method return the Stock Price based on trades recorded in past 15 minutes
+	 * this method return the Stock Price based on trades recorded in past 15 minutes 
+	 * for the Stock specified and update tickerPrice of the same Stock
 	 */
-	public double stockPriceTradesRecorded(/*insert*/){
-		return 0;
+	public double stockPriceTradesRecorded(ArrayList<Trade> trades, int rangeMinutes, Stock stock){
+		
+		double stockPrice = 0.0;
+		long now = (new Date()).getTime();
+		
+		
+		logger.debug("Trades "+trades.size());
+		double qtAcum = 0;
+		double sellAcum = 0;
+		
+		for(Trade trade : trades){
+			if (trade.getStock().equals(stock) && trade.getTimeStamp()>(now-getMillisecond(15))){
+				
+				if(trade.isSell()){
+					sellAcum += trade.getSharesQuantity();
+					qtAcum += trade.getSharesQuantity();
+				}else{
+					sellAcum -= trade.getSharesQuantity();
+				}
+				
+			}
+
+		}
+
+		// calculate the stock price
+		logger.info("sell and qt = "+sellAcum+" and "+qtAcum);
+		stockPrice = stock.getTickerPrice()+ (sellAcum/qtAcum);
+
+		stock.setTickerPrice(stockPrice);
+
+		return stockPrice;
 	}
 	
 	
@@ -92,5 +124,12 @@ public class Operations {
 		return allShareIndex;
 	}
 	
+	
+	/*
+	 * return the minutes in milliseconds
+	 */
+	public long getMillisecond(int minutes){
+		return minutes*60*1000;
+	}
 	
 }

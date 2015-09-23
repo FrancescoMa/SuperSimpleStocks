@@ -21,7 +21,7 @@ public class Stock {
 	/*
 	 * progressive. it is reasonable to assume that: 
 	 * if is register a sales growth in the previous 15 min, 
-	 * the price increases of (deltax/15)%
+	 * the price increases of (deltax/qtySell)%
 	 */
 	private double tickerPrice = 1.0;
 	
