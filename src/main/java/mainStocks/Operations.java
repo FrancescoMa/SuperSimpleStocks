@@ -31,8 +31,9 @@ public class Operations {
 	public double dividendYield(double lastDividend, double tickerPrice){
 		
 		double dividendYield = -1.0;
-		dividendYield = lastDividend / tickerPrice;
-		
+		if(tickerPrice>0){
+			dividendYield = lastDividend / tickerPrice;
+		}
 		return dividendYield;
 	}
 	
@@ -63,7 +64,6 @@ public class Operations {
 		return peRatio;
 	}
 	
-	//----------------trade---------------
 	
 	/*
 	 * this method return the Stock Price based on trades recorded in past 15 minutes 
