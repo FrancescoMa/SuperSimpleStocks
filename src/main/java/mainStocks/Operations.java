@@ -34,7 +34,7 @@ public class Operations {
 		if(tickerPrice>0){
 			dividendYield = lastDividend / tickerPrice;
 		}
-		return dividendYield;
+		return dividendYield!=0?dividendYield:tickerPrice;
 	}
 	
 	/*
@@ -48,17 +48,19 @@ public class Operations {
 			dividendYield = (fixedDividend * parValue ) / tickerPrice;
 		}
 		
-		return dividendYield;
+		return dividendYield!=0?dividendYield:tickerPrice;
 	}
 	
 	/*
 	 * this method return the P/E Ratio
 	 */
-	public double peRatio(int tickerPrice, int lastDividend){
+	public double peRatio(double tickerPrice, double lastDividend){
 		double peRatio = -1.0;
+		double dividend= dividendYield(lastDividend, tickerPrice);
+		logger.info("dividend ="+dividend+" e ticker price = "+tickerPrice);
 		
-		if(tickerPrice > 0.0){
-			peRatio = tickerPrice / dividendYield(lastDividend, tickerPrice);	
+		if(tickerPrice > 0.0 && dividend!=0 && dividend!=-1){
+			peRatio = tickerPrice / dividend;	
 		}
 		
 		return peRatio;

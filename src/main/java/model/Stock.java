@@ -5,6 +5,8 @@ package model;
 
 import org.apache.log4j.Logger;
 
+import mainStocks.Operations;
+
 
 /**
  * @author FrancescoM
@@ -129,6 +131,10 @@ public class Stock {
 	 */
 	public void setTickerPrice(double tickerPrice) {
 		this.tickerPrice = tickerPrice;
+		
+		Operations op= new Operations();
+		double dividendUpgrade= op.peRatio(lastDividend, tickerPrice);
+		this.lastDividend= dividendUpgrade;
 	}
 
 	
