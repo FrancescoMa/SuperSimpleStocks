@@ -104,10 +104,59 @@ public class testOperation {
 	@Test
 	public void testStockPriceTradesRecorded(){
 		assertNotNull(listStocks);
+		assertNotNull(listTrade);
 		
 		logger.info("-----------------test Stock Price Trades Recorded----------------");
 		Iterator<Stock> stockIterator= listStocks.iterator();
+		while(stockIterator.hasNext()){
+			Stock stock= stockIterator.next();
+			assertTrue(op.stockPriceTradesRecorded(listTrade, 15, stock)!=-1);
+			logger.info(stock.getSymbol()+" test --> good");
+			
+			assertTrue(op.stockPriceTradesRecorded(listTrade, 0, stock)==-1);
+			logger.info(stock.getSymbol()+" test minutes = 0 --> good");
+			
+			assertTrue(op.stockPriceTradesRecorded(listTrade, 15, null)==0);
+			logger.info(stock.getSymbol()+" test stock = null --> good");
+			
+			assertTrue(op.stockPriceTradesRecorded(null, 15, stock)==0);
+			logger.info(stock.getSymbol()+" test stock = null --> good");
+		}
 		
+		logger.info("-----------------test Stock Price Trades Recorded ok------------------------");
 		
 	}
+	
+	/**
+	 * Test method for {@link mainStocks.Operations#indexGBCEShare(ArrayList)}.
+	 */
+	@Test
+	public void testIndexGBCEShare(){
+		assertNotNull(listStocks);
+		
+		logger.info("-----------------test GBCE----------------");
+		
+			try {
+				
+				assertTrue(op.indexGBCEShare(listStocks)!=-1);
+
+				logger.info(" test --> good");
+				
+				
+				assertTrue(op.indexGBCEShare(null)==-1);
+				logger.info(" test list = null --> good");
+				
+				ArrayList<Stock> stocks2= new ArrayList<Stock>();
+				
+				assertTrue(op.indexGBCEShare(stocks2)==-1);
+				logger.info(" test stocks2 vuoto --> good");
+				
+			}catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		logger.info("-----------------test GBCE ok------------------------");
+	
+	}
+	
 }

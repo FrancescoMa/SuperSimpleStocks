@@ -74,34 +74,38 @@ public class Operations {
 	public double stockPriceTradesRecorded(ArrayList<Trade> trades, int rangeMinutes, Stock stock){
 		
 		double stockPrice = 0.0;
+
 		long now = (new Date()).getTime();
 		
 		
-		logger.debug("Trades "+trades.size());
+		double tradePriceSum=0.0;		
 		double qtAcum = 0;
 		double sellAcum = 0;
-		
-		for(Trade trade : trades){
-			if (trade.getStock().equals(stock) && trade.getTimeStamp()>(now-getMillisecond(15))){
-				
+		if(stock!=null && trades!=null){
+			logger.debug("Trades "+trades.size());
+			for(Trade trade : trades){
+				tradePriceSum+=trade.getPrice();
 				if(trade.isSell()){
-					sellAcum += trade.getSharesQuantity();
-					qtAcum += trade.getSharesQuantity();
-				}else{
-					sellAcum -= trade.getSharesQuantity();
+					qtAcum+=trade.getSharesQuantity();
 				}
-				
+				if (trade.getStock().equals(stock) && trade.getTimeStamp()>(now-getMillisecond(rangeMinutes))){
+					
+					if(trade.isSell()){
+						sellAcum += trade.getSharesQuantity();
+					}
+					
+				}
+	
 			}
-
+	
+			// calculate the stock price
+			logger.info("sell and qt = "+sellAcum+" and "+qtAcum);
+			if(qtAcum>0 && tradePriceSum>0){
+				stockPrice = tradePriceSum*sellAcum/qtAcum;
+				stock.setTickerPrice(stockPrice>0.0?stockPrice:stock.getTickerPrice());
+			}
 		}
-
-		// calculate the stock price
-		logger.info("sell and qt = "+sellAcum+" and "+qtAcum);
-		stockPrice = stock.getTickerPrice()+ (sellAcum/qtAcum);
-
-		stock.setTickerPrice(stockPrice);
-
-		return stockPrice;
+		return rangeMinutes!=0?stockPrice:-1;
 	}
 	
 	
@@ -111,17 +115,17 @@ public class Operations {
 	 * using the geometric mean of prices for all stocks
 	 */
 	public double indexGBCEShare(ArrayList<Stock> stocks) throws Exception{
-		double allShareIndex = 0.0;
+		double allShareIndex = -1.0;
 		
 		// Calculate stock price for all stock in the system
-		if(stocks.size()>=1){
+		if(stocks!=null && stocks.size()>=1){
 			double arg=0.0;
 			for(int i=0; i<stocks.size(); i++){
 				Stock stock = stocks.get(i);
 				arg = arg + stock.getTickerPrice() ;
 			}
 			// Calculates the GBCE All Share Index
-			allShareIndex = Math.pow(8, ((double)1/stocks.size()));
+			allShareIndex = Math.pow(arg, ((double)1/stocks.size()));
 		}
 		return allShareIndex;
 	}
