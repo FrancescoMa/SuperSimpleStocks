@@ -28,7 +28,7 @@ public class Operations {
 	/*
 	 * this method return the Dividend Yeld for Common Stocks
 	 */
-	public double dividendYield(double lastDividend, double tickerPrice){
+	public double dividendYield(double lastDividend, double tickerPrice)throws Exception{
 		
 		double dividendYield = -1.0;
 		if(tickerPrice>0){
@@ -40,7 +40,7 @@ public class Operations {
 	/*
 	 * this method return the Dividend Yeld for Preferred Stocks
 	 */
-	public double dividendYield(double fixedDividend, double parValue, double tickerPrice){
+	public double dividendYield(double fixedDividend, double parValue, double tickerPrice)throws Exception{
 		
 		double dividendYield = -1.0;
 		
@@ -54,7 +54,7 @@ public class Operations {
 	/*
 	 * this method return the P/E Ratio
 	 */
-	public double peRatio(double tickerPrice, double lastDividend){
+	public double peRatio(double tickerPrice, double lastDividend)throws Exception{
 		double peRatio = -1.0;
 		double dividend= dividendYield(lastDividend, tickerPrice);
 		logger.info("dividend ="+dividend+" e ticker price = "+tickerPrice);
@@ -71,7 +71,7 @@ public class Operations {
 	 * this method return the Stock Price based on trades recorded in past 15 minutes 
 	 * for the Stock specified and update tickerPrice of the same Stock
 	 */
-	public double stockPriceTradesRecorded(ArrayList<Trade> trades, int rangeMinutes, Stock stock){
+	public double stockPriceTradesRecorded(ArrayList<Trade> trades, int rangeMinutes, Stock stock)throws Exception{
 		
 		double stockPrice = 0.0;
 

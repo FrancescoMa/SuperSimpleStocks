@@ -133,8 +133,15 @@ public class Stock {
 		this.tickerPrice = tickerPrice;
 		
 		Operations op= new Operations();
-		double dividendUpgrade= op.peRatio(lastDividend, tickerPrice);
-		this.lastDividend= dividendUpgrade;
+		double dividendUpgrade;
+		try {
+			dividendUpgrade = op.peRatio(lastDividend, tickerPrice);
+			this.lastDividend= dividendUpgrade;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	

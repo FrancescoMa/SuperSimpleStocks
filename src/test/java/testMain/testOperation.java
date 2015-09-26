@@ -30,9 +30,10 @@ public class testOperation {
 	
 	/**
 	 * Test method for {@link mainStocks.Operations#dividendYield(int, int)}.
+	 * @throws Exception 
 	 */
 	@Test
-	public void testDividendYieldCommon() {
+	public void testDividendYieldCommon() throws Exception {
 		assertNotNull(listStocks);
 		
 		logger.info("-----------------test dividend yield common----------------");
@@ -52,9 +53,10 @@ public class testOperation {
 
 	/**
 	 * Test method for {@link mainStocks.Operations#dividendYield(int, int, int)}.
+	 * @throws Exception 
 	 */
 	@Test
-	public void testDividendYieldPreferred() {
+	public void testDividendYieldPreferred() throws Exception {
 		assertNotNull(listStocks);
 		
 		logger.info("-----------------test dividend yield preferred----------------");
@@ -75,9 +77,10 @@ public class testOperation {
 	
 	/**
 	 * Test method for {@link mainStocks.Operations#peRatio(double, double)}.
+	 * @throws Exception 
 	 */
 	@Test
-	public void testPERatio(){
+	public void testPERatio() throws Exception{
 		assertNotNull(listStocks);
 		
 		logger.info("-----------------test p/e ratio----------------");
@@ -100,9 +103,10 @@ public class testOperation {
 	
 	/**
 	 * Test method for {@link mainStocks.Operations#stockPriceTradesRecorded(ArrayList, int, Stock)}.
+	 * @throws Exception 
 	 */
 	@Test
-	public void testStockPriceTradesRecorded(){
+	public void testStockPriceTradesRecorded() throws Exception{
 		assertNotNull(listStocks);
 		assertNotNull(listTrade);
 		

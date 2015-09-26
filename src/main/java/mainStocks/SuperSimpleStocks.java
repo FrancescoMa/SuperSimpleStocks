@@ -29,7 +29,7 @@ public class SuperSimpleStocks {
 	 * @param args
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException,Exception {
 		
 		Operations operations= new Operations();
 		InizializeIstance initList = new InizializeIstance();
@@ -46,16 +46,17 @@ public class SuperSimpleStocks {
 
 		InputStreamReader input = new InputStreamReader (System.in);
 		BufferedReader tastiera = new BufferedReader (input);
-		logger.info("wait for a number of index.....");
-		String numeroLetto = tastiera.readLine();
-		int numero1 = Integer.valueOf(numeroLetto).intValue();
-		operations.stockPriceTradesRecorded(listTrade, 15, listStocks.get(numero1));
+		try{
+			logger.info("Insert the index of the stock who want to know the trades price....");
+			
+			String numeroLetto = tastiera.readLine();
+			int numero1 = Integer.valueOf(numeroLetto).intValue();
+			operations.stockPriceTradesRecorded(listTrade, 15, listStocks.get(numero1));
 		logger.info("ticker price after= "+listStocks.get(0).getTickerPrice());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
-	}
-	
-	
-	public static void tradeInsert(){
 		
 	}
 	
