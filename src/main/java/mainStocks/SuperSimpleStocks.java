@@ -6,12 +6,11 @@ package mainStocks;
 
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.BatchUpdateException;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
-import org.hamcrest.core.IsInstanceOf;
 
 import model.Stock;
 import model.Trade;
@@ -27,9 +26,9 @@ public class SuperSimpleStocks {
 
 	/**
 	 * @param args
-	 * @throws IOException 
+	 * @throws Exception 
 	 */
-	public static void main(String[] args) throws IOException,Exception {
+	public static void main(String[] args) throws Exception {
 		
 		Operations operations= new Operations();
 		InizializeIstance initList = new InizializeIstance();
@@ -52,9 +51,11 @@ public class SuperSimpleStocks {
 			String numeroLetto = tastiera.readLine();
 			int numero1 = Integer.valueOf(numeroLetto).intValue();
 			operations.stockPriceTradesRecorded(listTrade, 15, listStocks.get(numero1));
-		logger.info("ticker price after= "+listStocks.get(0).getTickerPrice());
+			logger.info("ticker price after= "+listStocks.get(0).getTickerPrice());
+		}catch(IndexOutOfBoundsException i){
+			logger.error("inser value between 0 and "+listStocks.size());
 		}catch(Exception e){
-			e.printStackTrace();
+			logger.error("invalid number...so, you maybe need to study math :) ");
 		}
 		
 		
