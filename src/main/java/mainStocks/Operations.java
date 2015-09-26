@@ -58,7 +58,7 @@ public class Operations {
 		double peRatio = -1.0;
 		
 		double dividend= dividendYield(lastDividend, tickerPrice);
-		logger.info("dividend ="+dividend+" e ticker price = "+tickerPrice);
+		//logger.info("dividend ="+dividend+" e ticker price = "+tickerPrice);
 		
 		if(tickerPrice > 0.0 && dividend!=0 && dividend!=-1){
 			peRatio = tickerPrice / dividend;	
@@ -74,7 +74,7 @@ public class Operations {
 		double peRatio = -1.0;
 		
 		double dividend= dividendYield(fixedDividend, parValue, tickerPrice);
-		logger.info("dividend ="+dividend+" e ticker price = "+tickerPrice);
+		//logger.info("dividend ="+dividend+" e ticker price = "+tickerPrice);
 		
 		if(tickerPrice > 0.0 && dividend!=0 && dividend!=-1){
 			peRatio = tickerPrice / dividend;	

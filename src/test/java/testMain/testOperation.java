@@ -88,6 +88,7 @@ public class testOperation {
 		
 		while(stockIterator.hasNext()){
 			Stock stock= stockIterator.next();
+			
 			if(stock.isPreferred()){
 				assertTrue(op.peRatio(stock.getTickerPrice(), stock.getFixedDividend(), stock.getParValue())!=-1);
 				logger.info(stock.getSymbol()+" test --> good");
@@ -110,8 +111,9 @@ public class testOperation {
 				assertTrue(op.peRatio(0, stock.getLastDividend())==-1);
 				logger.info(stock.getSymbol()+" test ticker price = 0 --> good");
 			}
-
+			
 		}
+		
 		
 		logger.info("-----------------test P/E ratio ok------------------------");
 	}
@@ -127,7 +129,9 @@ public class testOperation {
 		
 		logger.info("-----------------test Stock Price Trades Recorded----------------");
 		Iterator<Stock> stockIterator= listStocks.iterator();
+		int cont=0;
 		while(stockIterator.hasNext()){
+			logger.info("--------ticker price before= "+listStocks.get(cont).getTickerPrice());
 			Stock stock= stockIterator.next();
 			assertTrue(op.stockPriceTradesRecorded(listTrade, 15, stock)!=-1);
 			logger.info(stock.getSymbol()+" test --> good");
@@ -140,6 +144,9 @@ public class testOperation {
 			
 			assertTrue(op.stockPriceTradesRecorded(null, 15, stock)==0);
 			logger.info(stock.getSymbol()+" test stock = null --> good");
+			
+			logger.info("--------ticker price after= "+listStocks.get(cont).getTickerPrice());
+			cont++;
 		}
 		
 		logger.info("-----------------test Stock Price Trades Recorded ok------------------------");

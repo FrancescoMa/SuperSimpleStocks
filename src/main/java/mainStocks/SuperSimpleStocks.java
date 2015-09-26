@@ -7,7 +7,6 @@ package mainStocks;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.sql.BatchUpdateException;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
