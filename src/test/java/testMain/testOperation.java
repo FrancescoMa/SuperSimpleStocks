@@ -88,14 +88,29 @@ public class testOperation {
 		
 		while(stockIterator.hasNext()){
 			Stock stock= stockIterator.next();
-			assertTrue(op.peRatio(stock.getTickerPrice(), stock.getLastDividend())!=-1);
-			logger.info(stock.getSymbol()+" test --> good");
-			
-			assertTrue(op.peRatio(stock.getTickerPrice(), 0)!=-1);
-			logger.info(stock.getSymbol()+" test last dividend = 0 --> good");
-			
-			assertTrue(op.peRatio(0, stock.getLastDividend())==-1);
-			logger.info(stock.getSymbol()+" test ticker price = 0 --> good");
+			if(stock.isPreferred()){
+				assertTrue(op.peRatio(stock.getTickerPrice(), stock.getFixedDividend(), stock.getParValue())!=-1);
+				logger.info(stock.getSymbol()+" test --> good");
+				
+				assertTrue(op.peRatio(stock.getTickerPrice(), 0, stock.getParValue())!=-1);
+				logger.info(stock.getSymbol()+" test fixed dividend = 0 --> good");
+				
+				assertTrue(op.peRatio(stock.getTickerPrice(), stock.getFixedDividend(), 0)!=-1);
+				logger.info(stock.getSymbol()+" test par value = 0 --> good");
+				
+				assertTrue(op.peRatio(0, stock.getFixedDividend(), stock.getParValue())==-1);
+				logger.info(stock.getSymbol()+" test ticker price = 0 --> good");
+			}else{
+				assertTrue(op.peRatio(stock.getTickerPrice(), stock.getLastDividend())!=-1);
+				logger.info(stock.getSymbol()+" test --> good");
+				
+				assertTrue(op.peRatio(stock.getTickerPrice(), 0)!=-1);
+				logger.info(stock.getSymbol()+" test last dividend = 0 --> good");
+				
+				assertTrue(op.peRatio(0, stock.getLastDividend())==-1);
+				logger.info(stock.getSymbol()+" test ticker price = 0 --> good");
+			}
+
 		}
 		
 		logger.info("-----------------test P/E ratio ok------------------------");

@@ -38,6 +38,7 @@ public class SuperSimpleStocks {
 		logger.info("listStocks ="+listStocks.size());
 		logger.info("listTrade ="+listTrade.size());
 		
+		//get the ticker price of stocks Tea
 		logger.info("ticker price before= "+listStocks.get(0).getTickerPrice());
 		operations.stockPriceTradesRecorded(listTrade, 15, listStocks.get(0));
 		logger.info("ticker price after= "+listStocks.get(0).getTickerPrice());

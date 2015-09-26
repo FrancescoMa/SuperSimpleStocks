@@ -52,10 +52,11 @@ public class Operations {
 	}
 	
 	/*
-	 * this method return the P/E Ratio
+	 * this method return the P/E Ratio when the stock is common
 	 */
 	public double peRatio(double tickerPrice, double lastDividend)throws Exception{
 		double peRatio = -1.0;
+		
 		double dividend= dividendYield(lastDividend, tickerPrice);
 		logger.info("dividend ="+dividend+" e ticker price = "+tickerPrice);
 		
@@ -65,6 +66,23 @@ public class Operations {
 		
 		return peRatio;
 	}
+	
+	/*
+	 * this method return the P/E Ratio when the stock is preferred
+	 */
+	public double peRatio(double tickerPrice, double fixedDividend, double parValue)throws Exception{
+		double peRatio = -1.0;
+		
+		double dividend= dividendYield(fixedDividend, parValue, tickerPrice);
+		logger.info("dividend ="+dividend+" e ticker price = "+tickerPrice);
+		
+		if(tickerPrice > 0.0 && dividend!=0 && dividend!=-1){
+			peRatio = tickerPrice / dividend;	
+		}
+		
+		return peRatio;
+	}
+	
 	
 	
 	/*
